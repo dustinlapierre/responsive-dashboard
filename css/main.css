@@ -12,15 +12,23 @@ body
     width: 100%;
     overflow: hidden;
 }
+
 .sidebar
 {
     position: fixed;
     top: 0;
     left: 0;
     height: 100%;
-    width: 240px;
+    width: 78px;
     background: #11101d;
     padding: 6px 14px;
+    z-index: 99;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active
+{
+    width: 240px;
 }
 
 .sidebar .logo_content .logo
@@ -30,7 +38,17 @@ body
     height: 50px;
     width: 100%;
     align-items: center;
+    opacity: 0;
+    pointer-events:none;
+    transition: all 0.5s ease;
 }
+
+.sidebar.active .logo_content .logo
+{
+    opacity: 1;
+    pointer-events: none;
+}
+
 .logo_content .logo i
 {
     font-size: 28px;
@@ -46,7 +64,7 @@ body
 {
     position: absolute;
     color: #FFF;
-    left: 90%;
+    left: 50%;
     top: 6px;
     font-size: 20px;
     height: 50px;
@@ -54,6 +72,10 @@ body
     text-align: center;
     line-height: 50px;
     transform: translateX(-50%);
+}
+.sidebar.active #btn
+{
+    left: 90%;
 }
 
 .sidebar ul
@@ -74,7 +96,7 @@ body
     position: absolute;
     left: 122px;
     top: 0;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
     border-radius: 6px;
     height: 35px;
     width: 120px;
@@ -85,6 +107,11 @@ body
     transition: 0s;
     opacity: 0;
     pointer-events: none;
+    display: block;
+}
+.sidebar.active ul li .tooltip
+{
+    display: none;
 }
 
 .sidebar ul li:hover .tooltip
@@ -115,6 +142,14 @@ body
     z-index: 99;
     color: #FFF;
     font-size: 22px;
+    transition: all 0.5 ease;
+}
+
+.sidebar ul li .bx-search:hover
+{
+    background: #FFF;
+    color:#1d1b31;
+
 }
 
 .sidebar ul li a
@@ -125,6 +160,7 @@ body
     text-decoration: none;
     transition: all 0.4s ease;
     border-radius: 12px;
+    white-space: nowrap;
 }
 .sidebar ul li a:hover
 {
@@ -140,7 +176,17 @@ body
     line-height: 50px;
     text-align: center;
 }
-
+.sidebar .links_name
+{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+.sidebar.active .links_name
+{
+    opacity: 1;
+    pointer-events: auto;
+}
 .sidebar .profile_content
 {
     position: absolute;
@@ -154,6 +200,12 @@ body
     position: relative;
     padding: 10px 6px;
     height: 60px;
+    background: none;
+    transition: all 0.4s ease;
+}
+
+.sidebar.active .profile_content .profile
+{
     background: #1d1b31;
 }
 
@@ -161,6 +213,14 @@ body
 {
     display: flex;
     align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    white-space: nowrap;
+}
+.sidebar.active .profile .profile_details
+{
+    opacity: 1;
+    pointer-events: auto;
 }
 .profile .profile_details img
 {
@@ -185,24 +245,40 @@ body
 .profile #log_out
 {
     position: absolute;
-    left: 88%;
+    left: 50%;
     bottom: 5px;
     transform: translateX(-50%);
     min-width: 50px;
     line-height: 50px;
     font-size: 20px;
     border-radius: 12px;
+    text-align: center;
+    transition: all 0.4s ease;
+    background: #1d1b31;
 }
+.sidebar.active .profile #log_out
+{
+    left: 88%;
+    background:none;
+}
+
 .home_content
 {
     position: absolute;
     height: 100%;
-    width: calc(100% - 240px);
-    left: 240px;
+    width: calc(100% - 78px);
+    left: 78px;
+    transition: all 0.5s ease;
 }
 .home_content .text
 {
     font-size: 25px;
     color: #1d1b31;
     margin: 12px;
+}
+
+.sidebar.active ~ .home_content
+{
+    width: calc(100% - 240px);
+    left: 240px;
 }
